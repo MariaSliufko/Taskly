@@ -1,0 +1,6 @@
+@Taskly.Tasks.Host_HostAddress = http://localhost:5047
+
+GET {{Taskly.Tasks.Host_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
