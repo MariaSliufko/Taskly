@@ -2,26 +2,32 @@
 using Taskly.Tasks.Repository.Contract;
 using Microsoft.EntityFrameworkCore;
 using Taskly.Tasks.Repository.Entities;
+using Taskly.Tasks.Shared.Models;
 
 namespace Taskly.Tasks.Repository.Implementation
 {
-    public class TaskRepository : ITaskRepository
+    public class TaskRepository(TaskContext context) : ITaskRepository
     {
-        private readonly TaskContext _context;
-        
-        public TaskRepository(TaskContext context)
-        {
-            _context = context;
-        }
+        private readonly TaskContext _context = context;
 
-        public async Task<(int total, List<TaskItem>)> GetTasksAsync(int take, int skip, CancellationToken ct = default)
+        public async Task<(int total, List<TaskItem>)> GetTasksAsync(TaskQueryParameters parameters, CancellationToken ct = default)
         {
-            var totalCount = await _context.Tasks.AsNoTracking().CountAsync(ct);
-            var tasks = await _context.Tasks.AsNoTracking()
-                .OrderBy(t => t.CreatedAt)
-                .Skip(skip)
-                .Take(take)
-                .ToListAsync(ct);
+            var query = _context.Tasks.AsNoTracking();
+
+            if (!string.IsNullOrEmpty(parameters.Search))
+            {
+                query = query.Where(t => t.Title.Contains(parameters.Search));
+            }
+
+            query = parameters.SortBy switch
+            {
+                "Priority" => query.OrderBy(t => t.Priority),
+                _ => query.OrderBy(t => t.CreatedAt)
+            };
+
+            var totalCount = await query.CountAsync(ct);
+            var tasks = await query.Skip(parameters.Skip).Take(parameters.Take).ToListAsync(ct);
+
             return (totalCount, tasks);
         }
 

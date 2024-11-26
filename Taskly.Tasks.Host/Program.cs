@@ -1,7 +1,9 @@
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http.Json;
 using Serilog;
+using Taskly.Tasks.Host.Endpoints;
 using Taskly.Tasks.Repository.Registration;
+using Taskly.Tasks.Services.Registration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,11 +14,14 @@ builder.Services.Configure<JsonOptions>(options =>
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
 
+builder.Services.AddTaskServices();
 builder.Services.AddRepository(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -30,6 +35,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapTasksEndpoints();
 
 app.Run();
 
