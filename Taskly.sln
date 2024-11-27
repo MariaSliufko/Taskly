@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskly.Tasks.Host", "Taskly.Tasks.Host\Taskly.Tasks.Host.csproj", "{8CC3EF0A-B406-4E13-A642-A5CD38259F0B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskly.Tasks.Host", "backend\Taskly.Tasks.Host\Taskly.Tasks.Host.csproj", "{8CC3EF0A-B406-4E13-A642-A5CD38259F0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskly.Tasks.Repository", "Taskly.Tasks.Repository\Taskly.Tasks.Repository.csproj", "{F952BC7D-F54C-40AD-9DA0-CBC230D4DD68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskly.Tasks.Repository", "backend\Taskly.Tasks.Repository\Taskly.Tasks.Repository.csproj", "{F952BC7D-F54C-40AD-9DA0-CBC230D4DD68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskly.Tasks.Services", "Taskly.Tasks.Services\Taskly.Tasks.Services.csproj", "{1D225AF5-96C6-466F-B4E7-E0B38D21BD81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskly.Tasks.Services", "backend\Taskly.Tasks.Services\Taskly.Tasks.Services.csproj", "{1D225AF5-96C6-466F-B4E7-E0B38D21BD81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskly.Tasks.Shared", "Taskly.Tasks.Shared\Taskly.Tasks.Shared.csproj", "{979D5AE9-F40E-4751-B428-494A59A1AF11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskly.Tasks.Shared", "backend\Taskly.Tasks.Shared\Taskly.Tasks.Shared.csproj", "{979D5AE9-F40E-4751-B428-494A59A1AF11}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "host", "host", "{1DD4498C-571F-4BB9-B201-EECE69892365}"
 EndProject
