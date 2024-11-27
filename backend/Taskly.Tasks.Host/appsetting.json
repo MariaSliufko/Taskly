@@ -1,0 +1,26 @@
+{
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.Console" ],
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    },
+    "WriteTo": [ { "Name": "Console" } ],
+    "Enrich": [ "FromLogContext" ],
+    "Properties": {
+      "ApplicationName": "Taskly"
+    }
+  },
+  "AllowedHosts": "*",
+  "Tasks": {
+    "DataBase": {
+      "Server": "127.0.0.1",
+      "Port": 3306,
+      "Name": "tasks"
+    }
+  }
+}
+
