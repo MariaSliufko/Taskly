@@ -14,6 +14,16 @@ builder.Services.Configure<JsonOptions>(options =>
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000") 
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddTaskServices();
 builder.Services.AddRepository(builder.Configuration);
 
@@ -26,6 +36,8 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 app.UseSerilogRequestLogging();
+
+app.UseCors("AllowFrontend");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
